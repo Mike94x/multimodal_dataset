@@ -1,0 +1,6 @@
+<launch>
+    <arg name="map_1" default="/turtlebot3/map"/>
+  <node name="map_saver1" pkg="map_server" type="map_saver" args="-f $(find turtle)/maps_temp/map0">
+        <remap from="/map" to="$(arg map_1)"/>
+  </node>
+</launch>

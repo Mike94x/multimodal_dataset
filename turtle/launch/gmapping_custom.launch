@@ -1,0 +1,60 @@
+<launch> 
+  <arg name="scan_topic" default="turtlebot3/scan" /> 
+  <arg name="open_rviz" default="true"/>
+  <arg name="slam_methods" default="gmapping"/>
+
+  <!-- <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 map vicon_odom 100"/>  -->
+<!-- Defining parameters for slam_gmapping node --> 
+ 
+  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">  <!-- ns="turtlebot3"> -->
+    <param name="base_frame" value="turtlebot3/base_footprint2"/> 
+    <param name="odom_frame" value="odom_bad"/> 
+    <param name="map_frame"  value="turtlebot3/map"/>
+    <param name="map_update_interval" value="1.0"/> 
+    <param name="maxUrange" value="3.0"/> 
+    <param name="maxRange" value="8.0"/> 
+    <param name="sigma" value="0.05"/> 
+    <param name="kernelSize" value="1"/> 
+    <param name="lstep" value="0.05"/> 
+    <param name="astep" value="0.05"/> 
+    <param name="iterations" value="5"/> 
+    <param name="lsigma" value="0.075"/> 
+    <param name="ogain" value="3.0"/> 
+    <param name="lskip" value="0"/> 
+    <param name="minimumScore" value="50"/> 
+    <param name="srr" value="1e-16"/> 
+    <param name="srt" value="1e-16"/> 
+    <param name="str" value="1e-16"/> 
+    <param name="stt" value="1e-16"/> 
+    <param name="linearUpdate" value="0.1"/> 
+    <param name="angularUpdate" value="0.1"/> 
+    <param name="temporalUpdate" value="0.5"/> 
+    <param name="resampleThreshold" value="0.5"/> 
+    <param name="particles" value="100"/> 
+  
+    <param name="xmin" value="-10.0"/> 
+    <param name="ymin" value="-10.0"/> 
+    <param name="xmax" value="10.0"/> 
+    <param name="ymax" value="10.0"/> 
+ 
+    <param name="delta" value="0.05"/> 
+    <param name="llsamplerange" value="0.01"/> 
+    <param name="llsamplestep" value="0.01"/> 
+    <param name="lasamplerange" value="0.005"/> 
+    <param name="lasamplestep" value="0.005"/> 
+
+
+    <remap from="/scan" to="/turtlebot3/scan" />
+    <remap from="/map" to="/turtlebot3/map" />
+    <remap from="/map_metadata" to="/turtlebot3/map_metadata" />
+    
+  </node> 
+
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find turtlebot3_slam)/rviz/turtlebot3_$(arg slam_methods).rviz">
+      <remap from="joint_states" to="turtlebot3/joint_states" />
+    </node>
+  </group>
+
+</launch> 
