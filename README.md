@@ -11,12 +11,9 @@ SU PC:
 - roslaunch turtle start_turtle.launch
 
 1) Creazione manuale della mappa:
-  shell1:
   - roslaunch turtle gmapping_custom.launch 
-  shell2:
   - roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch (movimentazione robot da tastiera)
   Dopo l'esplorazione della mappa (non arrestare gmapping!):
-  shell3:
   - roslaunch turtle save_map.launch
   La mappa sarà salvata in turtle/map_temp e potrà essere successivamente spostata in turtle/script/data/scene/maps e rinominata opportunamente col nome    della scena corrispondente (NB: ciò vale anche per il file .yaml)
   
