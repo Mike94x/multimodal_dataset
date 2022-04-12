@@ -1,6 +1,6 @@
 # multimodal_dataset
 
-Insieme di tool volto alla creazione di un dataset multimodale utilizzando il robot mobile “turtlebot3 waffle pi” il cui comparto sensoristico è stato ampliato con l’aggiunta di una depth camera e un sensore mmWave.__
+Insieme di tool volto alla creazione di un dataset multimodale utilizzando il robot mobile “turtlebot3 waffle pi” il cui comparto sensoristico è stato ampliato con l’aggiunta di una depth camera e un sensore mmWave.  
 Inoltre, un grande valore aggiunto è dato dall'utilizzo del sistema di motion capture Vicon che fornisce la posa del robot e degli oggetti presenti all'interno delle mappe con una precisione pressoché assoluta.
 
 ESECUZIONE:
