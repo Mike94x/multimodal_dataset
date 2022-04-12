@@ -1,0 +1,20 @@
+<launch>
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="multi_robot_name" default="turtlebot3"/>
+
+  <include file="$(find turtlebot3_bringup)/launch/includes/description.launch.xml">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+  <!-- Run script per convertire odometria vicon in messaggio odometry -->
+  <node pkg="turtle" name="from_vicon_to_odom" type="from_vicon_to_odom.py" output="screen" />
+
+  <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 turtlebot3/map turtlebot3/odom_vicon 100"/> 
+  <node pkg="tf" type="static_transform_publisher" name="camera_to_base" args="0.05 0 -0.05 0 0 0 turtlebot3/base_link camera_link 100"/> 
+  <node pkg="tf" type="static_transform_publisher" name="mmwave_to_base" args="0.05 0 -0.1 0 0 0 turtlebot3/base_link turtlebot3/ti_mmwave_0 100"/> 
+  
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="turtlebot3">
+    <param name="publish_frequency" type="double" value="50.0" />
+    <param name="tf_prefix" value="$(arg multi_robot_name)"/>
+  </node>
+</launch>

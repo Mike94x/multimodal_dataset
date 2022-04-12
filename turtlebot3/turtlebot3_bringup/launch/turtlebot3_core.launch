@@ -1,0 +1,17 @@
+<launch>
+  <arg name="multi_robot_name" default=""/>
+  <!--tf remmapper node-->
+  <node pkg="tf" type="tf_remap" name="tf_remapper" output="screen">
+    <rosparam param="mappings">
+      [{old: /turtlebot3/odom, new: /turtlebot3/odom_old}]
+    </rosparam>
+  </node>
+
+  <node pkg="rosserial_python" type="serial_node.py" name="turtlebot3_core" output="screen">
+    
+    <param name="port" value="/dev/ttyACM0"/>
+    <param name="baud" value="115200"/>
+    <param name="tf_prefix" value="$(arg multi_robot_name)"/>
+    <remap from="tf" to="tf_old" />
+  </node>
+</launch>
