@@ -12,9 +12,9 @@ SU PC:
 
 1) Creazione manuale della mappa:
   - roslaunch turtle gmapping_custom.launch 
-  - roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch (movimentazione robot da tastiera)
+  - roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch (movimentazione robot da tastiera)  
   Dopo l'esplorazione della mappa (non arrestare gmapping!):
-  - roslaunch turtle save_map.launch
+  - roslaunch turtle save_map.launch  
   La mappa sarà salvata in turtle/map_temp e potrà essere successivamente spostata in turtle/script/data/scene/maps e rinominata opportunamente col nome    della scena corrispondente (NB: ciò vale anche per il file .yaml)
   
 2) Creazione dataset:
@@ -23,7 +23,8 @@ SU PC:
 
 Tools aggiuntivi: 
 1) Conversione dati delle run da pickle a json: 
-    - rosrun turtle dataset_to_json.py  -> file json salvati nella cartella turtle/script/data/json_conversion
+    - rosrun turtle dataset_to_json.py  
+      (file json salvati nella cartella turtle/script/data/json_conversion)
 2) Creazione di una depthmap utilizzando immagine e pontcloud:
     - rosrun turtle create_depthmap_from_mmwave_image.py
 3) Plot tutti i punti di una run con calcolo della chamfer distance:
